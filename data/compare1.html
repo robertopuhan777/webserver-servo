@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name='theme-color' content='white'>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'/>
+    </head>
+<body>
+
+
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+ <btn1 id='btn1' title='Night Mode' style='display:block;font-size:22px;cursor:pointer;position:fixed;left:1px;top:1px;'><i class='fas fa-moon'></i></btn1>
+<script src='btn1.js'></script>
+<btn2 id='btn2' title='Day Mode' style='display:block;font-size:22px;cursor:pointer;position:fixed;left:40px;top:1px;'><i class='fas fa-sun'></i></btn2>
+<script src='btn2.js'></script>
+ <br>
+ <hr>
+
+<script>
+ function handleSubmit () {
+			const sunrisehour = document.getElementById('sunrisehour').value;
+            const sunriseminute = document.getElementById('sunriseminute').value;
+            const sunrisesecond = document.getElementById('sunrisesecond').value;
+			const sunsethour = document.getElementById('sunsethour').value;
+            const sunsetminute = document.getElementById('sunsetminute').value;
+            const sunsetsecond = document.getElementById('sunsetsecond').value;
+            sessionStorage.setItem("sunrisehour", sunrisehour);
+            sessionStorage.setItem("sunriseminute", sunriseminute);
+			sessionStorage.setItem("sunrisesecond", sunrisesecond);
+			sessionStorage.setItem("sunsethour", sunsethour);
+            sessionStorage.setItem("sunsetminute", sunsetminute);
+			sessionStorage.setItem("sunsetsecond", sunsetsecond);
+            return;
+            }
+var date = new Date();
+var hour = date.getHours();
+var minute = date.getMinutes();
+var second = date.getSeconds();
+if (hour < 10) {hour = "0"+hour;}
+if (minute < 10) {minute = "0"+minute;}
+if (second < 10) {second = "0"+second;}
+var currentTime = ([hour, minute, second].join('\n'));
+
+document.write(currentTime);
+document.write('<br>');
+var sunrisehour = sessionStorage.getItem("sunrisehour");
+var sunriseminute = sessionStorage.getItem("sunriseminute");
+var sunrisesecond = sessionStorage.getItem("sunrisesecond");
+var sunriseTime = ([sunrisehour, sunriseminute, sunrisesecond].join('\n'));
+document.write(sunriseTime);
+document.write('<br>');
+var sunsethour = sessionStorage.getItem("sunsethour");
+var sunsetminute = sessionStorage.getItem("sunsetminute");
+var sunsetsecond = sessionStorage.getItem("sunsetsecond");
+var sunsetTime = ([sunsethour, sunsetminute, sunsetsecond].join('\n'));
+document.write(sunsetTime);
+document.write('<br>');
+if (document.body) {
+    if (sunriseTime <= currentTime && currentTime < sunsetTime) {
+   document.body.style.backgroundColor = 'white';
+	document.body.style.color = 'black';
+	$('meta[name=theme-color]').remove();
+    $('head').append( '<meta name="theme-color" content="white">' );
+    document.body.style.transition = "background 0.2s,color 0.2s";
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.color = "black";
+    document.getElementById("btn2").style.color = "darkorange";
+	document.getElementById("btn1").style.color = "black";
+    }
+	
+    else {
+   document.body.style.backgroundColor = 'black';
+	document.body.style.color = 'white';
+	$('meta[name=theme-color]').remove();
+    $('head').append( '<meta name="theme-color" content="black">' );
+    document.body.style.transition = "background 0.2s,color 0.2s";
+    document.body.style.backgroundColor = "#000000";
+    document.getElementById("btn1").style.color = "darkorange";
+	document.getElementById("btn2").style.color = "white";
+    }
+
+}
+
+</script>
+
+<div id='MyClockDisplay'>
+<script>
+function showTime(){
+var date = new Date();
+var h = date.getHours();
+var m = date.getMinutes();
+var s = date.getSeconds();h = (h < 10) ? '0' + h : h;m = (m < 10) ? '0' + m : m;s = (s < 10) ? '0' + s : s;
+var time = h + ':' + m + ':' + s + ' ' ;document.getElementById('MyClockDisplay').innerText = time;
+document.getElementById('MyClockDisplay').textContent = time;setTimeout(showTime, 1000);}showTime(); 
+
+</script>
+
+</div>
+
+ <form action="http://www.ihome.si/result.html" method="POST">
+ <hr>
+		SUNRISE<br><br>
+            <input type="number" id="sunrisehour" name="sunrisehour" placeholder="Enter hour.." required/>
+            <input type="number" id="sunriseminute" name="sunriseminute" placeholder="Enter minute.." required/>
+			<input type="number" id="sunrisesecond" name="sunrisesecond" placeholder="Enter second.." required/>
+			<br>
+			<hr>SUNSET<br><br>
+			<input type="number" id="sunsethour" name="sunsethour" placeholder="Enter hour.." required/>
+            <input type="number" id="sunsetminute" name="sunsetminute" placeholder="Enter minute.." required/>
+			<input type="number" id="sunsetsecond" name="sunsetsecond" placeholder="Enter second.." required/>
+            <hr>
+			<br>
+			<input type="submit" onclick="handleSubmit()"/>
+        </form>
+		<span id='spn'>
+</span>
+<script>
+//variable to check whether the page was refreshed or the page will keep on refreshing every second.
+var vrefreshed=sessionStorage.getItem('refreshed');
+if (typeof vrefreshed === 'undefined')
+    vrefreshed = 0;
+
+function time() {
+
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    var s = d.getSeconds();
+	var sunrisehour = sessionStorage.getItem("sunrisehour");
+    var sunriseminute = sessionStorage.getItem("sunriseminute");
+    var sunrisesecond = sessionStorage.getItem("sunrisesecond");
+	var sunsethour = sessionStorage.getItem("sunsethour");
+var sunsetminute = sessionStorage.getItem("sunsetminute");
+var sunsetsecond = sessionStorage.getItem("sunsetsecond");
+    if(vrefreshed==0 && ((h==sunrisehour && m==sunriseminute && s==sunrisesecond) || (h==sunsethour && m==sunsetminute && s==sunsetsecond))){
+        sessionStorage.setItem('refreshed', 1);
+        vrefreshed=1;
+        $('#spn').text('');
+        location.reload();
+    }else{
+        if(vrefreshed==1 && ((h==sunrisehour && m==sunriseminute && s==sunrisesecond) || (h==sunsethour && m==sunsetminute && s==sunsetsecond))){
+            // do nothing
+        }else{
+            sessionStorage.setItem('refreshed', 0);
+            vrefreshed=0;
+            $('#spn').text('');
+        }
+    }
+}
+//call time() function every 1000 milliseconds i.e. every second.
+setInterval(time, 1000);
+</script>
+
+</body>
+</html>

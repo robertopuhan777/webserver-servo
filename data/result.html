@@ -1,0 +1,39 @@
+﻿<html>
+    <head>
+        <title>
+            Result Page
+        </title>
+        <script>
+            window.addEventListener('load', () => {
+                const sunrisehour = sessionStorage.getItem('sunrisehour');
+                const sunriseminute = sessionStorage.getItem('sunriseminute');
+				const sunrisesecond = sessionStorage.getItem('sunrisesecond');
+				const sunsethour = sessionStorage.getItem('sunsethour');
+                const sunsetminute = sessionStorage.getItem('sunsetminute');
+				const sunsetsecond = sessionStorage.getItem('sunsetsecond');
+                document.getElementById('result-sunrisehour').value = sunrisehour;
+                document.getElementById('result-sunriseminute').value = sunriseminute;
+				document.getElementById('result-sunrisesecond').value = sunrisesecond;
+				document.getElementById('result-sunsethour').value = sunsethour;
+                document.getElementById('result-sunsetminute').value = sunsetminute;
+				document.getElementById('result-sunsetsecond').value = sunsetsecond;
+				window.open("http://www.ihome.si/compare.html","_self");
+
+            })
+        </script>
+    </head>
+    <body>
+	
+        
+		SUNRISE
+            <input type="number" id="result-sunrisehour" name="sunrisehour"/>
+            <input type="number" id="result-sunriseminute" name="sunriseminute"/>
+			<input type="number" id="result-sunrisesecond" name="sunrisesecond"/>
+			SUNSET
+			<input type="number" id="result-sunsethour" name="sunsethour"/>
+            <input type="number" id="result-sunsetminute" name="sunsetminute"/>
+			<input type="number" id="result-sunsetsecond" name="sunsetsecond"/>
+		
+      
+    </body>
+</html>
