@@ -8,7 +8,7 @@ Preferences preferences;
 #include <HTTPClient.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
-#include <Servo.h>
+#include <ESP32_Servo.h>
 Servo myServo1;  // create servo object to control a servo
 Servo myServo2;  // create servo object to control a servo
 #include <Arduino_JSON.h>
